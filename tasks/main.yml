@@ -2,10 +2,16 @@
 # tasks file for beacon
 #
 
-- name: Install python2.9
+- name: Install python
   ansible.builtin.package:
-    name: python39
+    name: "{{ item }}"
     state: present
+  loop:
+    - python39
+    - python3-setuptools
+    - python3-requests
+    - python3-pip
+
 
 - name: Install cronie
   ansible.builtin.package:

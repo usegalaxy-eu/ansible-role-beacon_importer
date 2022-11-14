@@ -18,4 +18,4 @@ jobs:
       - name: Run tests on CentOS-Stream9
         uses: gofrolist/molecule-action@v2
         with:
-          molecule_args: "-p CentOS-stream9"
+          molecule_args: "-p rocky9"
