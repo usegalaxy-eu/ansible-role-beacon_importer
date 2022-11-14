@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.9
 """Pushes genomic variant information from a galaxy to a beacon instance.
 
 Usage:

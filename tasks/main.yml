@@ -8,10 +8,7 @@
     state: present
   loop:
     - python39
-    - python3-setuptools
     - python3-requests
-    - python3-pip
-    - python3-numpy
 
 
 - name: Install cronie
@@ -47,6 +44,7 @@
 - name: Install python deps
   ansible.builtin.pip:
     requirements: "{{ script_dir }}/requirements.txt"
+    executable: /usr/bin/pip3.9
 
 - name: Create a cronjob for daily executions 
   ansible.builtin.cron:
