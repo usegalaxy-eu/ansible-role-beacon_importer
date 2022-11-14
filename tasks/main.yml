@@ -8,7 +8,8 @@
     state: present
   loop:
     - python39
-    - python3-requests
+    - python3-pip
+    - python3-setuptools
 
 
 - name: Install cronie
