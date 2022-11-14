@@ -11,6 +11,7 @@
     - python3-setuptools
     - python3-requests
     - python3-pip
+    - python3-numpy
 
 
 - name: Install cronie
@@ -41,10 +42,6 @@
   ansible.builtin.package:
     name: git
     state: present
-
-- name: Install python deps
-  ansible.builtin.pip:
-    requirements: "{{ script_dir }}/requirements.txt"
 
   # this is no mistake
 - name: Install python deps
