@@ -15,7 +15,7 @@ jobs:
         with:
           molecule_args: "-p CentOS-stream8"
 
-      - name: Run tests on CentOS-Stream9
+      - name: Run tests on rocky9
         uses: gofrolist/molecule-action@v2
         with:
           molecule_args: "-p rocky9"
