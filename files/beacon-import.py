@@ -254,7 +254,7 @@ def get_beacon_histories(gi: GalaxyInstance) -> List[str]:
 
         # skip adding the history if beacon_enabled is not set for the owner account
         history_user_preferences: Dict[str, str] = user_details["preferences"]
-        if "beacon_enabled" not in history_user_preferences or history_user_preferences["beacon_enabled"] != "1":
+        if "beacon_enabled" not in history_user_preferences or history_user_preferences["beacon_enabled"] != True:
             continue
 
         history_ids.append(history["id"])
