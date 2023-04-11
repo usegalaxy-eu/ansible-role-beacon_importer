@@ -6,16 +6,7 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
-  loop:
-    - python39
-    - python3-pip
-    - python3-setuptools
-
-
-- name: Install cronie
-  ansible.builtin.package:
-    name: cronie
-    state: present
+  loop: "{{ beacon_install_packages }}"
 
 - name: Ensure script user exists 
   ansible.builtin.user:
@@ -45,19 +36,19 @@
 - name: Install python deps
   ansible.builtin.pip:
     requirements: "{{ script_dir }}/requirements.txt"
-    executable: /usr/bin/pip3.9
+    executable: "{{ beacon_pip_path }}"
 
-- name: Create a cronjob for daily executions 
+- name: Create a cronjob for daily executions
   ansible.builtin.cron:
     user: "{{ script_user }}"
     name: "check dirs"
     minute: "0"
     hour: "5"
-    job: "{{ script_dir }}/beacon-import.py -k {{ galaxy_api_key }} -u {{ galaxy_api_url }} rebuild -H {{ beacon_db_host }} -P {{ beacon_db_port }} -U {{beacon_db_user }} -W {{ beacon_db_password }} -N {{ beacon_db_name }} || touch /tmp/job_error"
+    job: "{{ beacon_python_path }} {{ script_dir }}/beacon-import.py -k {{ galaxy_api_key }} -u {{ galaxy_api_url }} rebuild -H {{ beacon_db_host }} -P {{ beacon_db_port }} -U {{beacon_db_user }} -W {{ beacon_db_password }} -N {{ beacon_db_name }} || touch /tmp/job_error"
 
 - name: Make sure crond is started and enabled
   ansible.builtin.systemd:
-    name: crond 
+    name: "{{ ansible_os_family == 'RedHat' | ternary('crond', 'cron') }}"
     state: started
     enabled: yes
 
