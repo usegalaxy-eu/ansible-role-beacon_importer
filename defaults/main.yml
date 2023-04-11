@@ -15,3 +15,22 @@ beacon_db_port: 5432
 beacon_db_user: beacon
 beacon_db_password: change_me!
 beacon_db_name: beacon
+
+_beacon_python_binary: "{{ (ansible_os_family == 'RedHat') | ternary('python39', 'python3') }}"
+_beacon_pip_binary: "{{ (ansible_os_family == 'RedHat') | ternary('pip3.9', 'pip3') }}"
+beacon_python_path: "/usr/bin/{{ _beacon_python_binary }}"
+beacon_pip_path: "/usr/bin/{{ _beacon_pip_binary }}"
+
+_beacon_install_packages_rhel:
+  - python39
+  - python3-pip
+  - python3-setuptools
+  - cronie
+
+_beacon_install_packages_debian:
+  - python3
+  - python3-pip
+  - python3-setuptools
+  - cron
+
+beacon_install_packages: "{{ (ansible_os_family == 'RedHat') | ternary(_beacon_install_packages_rhel, _beacon_install_packages_debian) }}"
