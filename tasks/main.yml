@@ -1,5 +1,9 @@
 # tasks file for beacon
 #
+- name: Reset python interpreter
+  ansible.builtin.set_fact:
+    ansible_python_interpreter: /usr/bin/python3
+
 - name: Install python
   ansible.builtin.package:
     name: "{{ item }}"
