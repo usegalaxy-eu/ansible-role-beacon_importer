@@ -1,11 +1,11 @@
 argparse
 asyncio
-asyncpg
 datetime
 dataclasses
-numpy
 typing
-git+https://github.com/CSCfi/beacon-python
+asyncpg>=0.28.0
+numpy
 bioblend
-cyvcf2
-
+cyvcf2>=0.32.1
+aiohttp>=3.8.6
+uvloop>=0.17.0

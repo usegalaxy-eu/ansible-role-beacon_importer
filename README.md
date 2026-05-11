@@ -5,7 +5,7 @@ paprikant.beacon
 ```yaml
 
 script_user: beacon-import
-script_dir: /opt/beacon-import/
+script_dir: /opt/beacon-import/ 
 
 galaxy_api_key: 123213hiufho12h31h321
 galaxy_api_url: usegalaxy.eu
